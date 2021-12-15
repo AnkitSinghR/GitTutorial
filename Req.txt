@@ -1,0 +1,457 @@
+apz.app.TransactionApp.Next
+transfer
+===========
+bakong walletno-85515575284
+Bakong benfAcc -000914079,ABAAKHPPXXX advance bank of asia
+                usd 000601714,advance bank of asia
+WIT usd- 300009276665,khr-100010216437
+RFT phone no- 976425551,093723983
+RFT Accn0 -123456789,123456
++Wing Wallet
+012021492 USD
+086587250 USD
+0126500503 KHR
+1191583152 KHR
+USD 00379430
+1. Wing account KHR 00004877
+2. Wing account USD 00379430 
+3. Wing wallet KHR 1191583152 
+4. Wing Wallet USD 012021492
+LHPP - 087 855 868 KHR
+86261080	,17975454,092342987,087855868,KHR -077787278 usd-077787278
+
+pay bills
+=========
+electricity of cambodia -10002410 /done
+EDC sihanouk Ville - 1044810,1045010 /done
+sihanoukVille Anco water supply 003536,003537 not moving on Next screen
+ppwsapp - phnom penh water supply authority - 003070,003071 /getting technical difficlty error onblur of customerid
+ppwm -Phnom Penh Waste Management - 65318010 // facing technical difficulties on click on next
+ppap - phnom penh Autonomous port -20210419026 /done
+NUB - National University of Battambang - any student id //done
+RUFA royal university of fine arts 20191001 /done
+RUPP - royal university of Phnom penh - 2104000247 /done
+ISP -online ISP -18839 /done
+Bph -Borey peng Hout -00025786,00012766 /getting technical difficulties error
+
+topup pinless- 012249194 /done
+----------------
+transfer
+--------
+Bakong
+RFT
+International
+
+pay bills
+-----------
+sihanoukVille Anco water supply
+phnom penh water supply authority
+Phnom Penh Waste Management
+Borey peng Hout
+
+
+BKGW
+BKGCASA
+RFTCASA
+RFTPHNO
+WALLETWING
+LHPPWALLET
+NCS
+
+1. Scan to pay - FTB QR and Bankong
+
+We will implement the updated KHQR spec - Tag 26 Static QR Code for the following functionality.
+
+1. FTB Account QR Code generation
+2. Within Bank Transfer - To account number field population 
+3. FTQ QR - Scan to pay
+4. Bakong - Scan to pay 
+
+
+doftinbank": {
+        "debitaccounrno": "300010216528",
+        "creditaccountno": "300003030184",
+        "debitammount": "7",
+        "debitcurrency": "USD",087 855 868 KHR
+        "commissionamt": "USD 0.5",
+        "creditcurrency": "USD",
+        "description": "Return Test"
+    }
+}
+apz.app.AddPayee.maskAccno = function(lobj) {
+    // lobj.value = lobj.value.replace(gALLOWONLYNUM, '');
+    var acc = "";
+    if (lobj.id === AddPayeescreenId + "accno") {
+        acc = $("#" + AddPayeescreenId + "accno").val()
+        $("#" + AddPayeescreenId + "accnounmasked").text(acc)
+        $("#" + AddPayeescreenId + "accno").val(acc.replace(/[0-9]/g, "x"))
+    } else if (lobj.id === AddPayeescreenId + "IntAccno") {
+        acc = $("#" + AddPayeescreenId + "IntAccno").val()
+        $("#" + AddPayeescreenId + "Intmaskedacc").text(acc)
+        $("#" + AddPayeescreenId + "IntAccno").val(acc.replace(/[0-9]/g, "x"))
+    }
+}
+
+/u01/appzillon/logs/AppzillonBanking
+BakongFullTransfer
+sample req: 
+{
+ "apiRequest": {
+ "requestObj": {
+ "customerId": "1900968940",
+ "debitAcctNo": 300010216366,
+ "debitAcctCcy": "USD",
+ "benefAcctNo": 100010216677,
+ "creditcurrency": "USD",
+ "transactionAmount": 10,
+ "transactionCcy": "USD",
+ "customerType": "ALL",
+ "transactionType": "BKGCASA",
+ "transferType": "BKGCASA",
+ "transRemarks": "Fund Transfer Remarks" ,
+ "receiverBankCode": "VBLCKHPPXXX",
+ "senderName": "pomchanveasna",
+ "receiverName": "Beneficiary Name"
+ },
+ "workflow":"ValidateTPINAndBKGFullFundTransfer",
+ "interfaceName": "BakongFullTransfer",
+ "appId": "FTBRMB",
+ "userId": "000000000002"
+ }
+}
+
+BakongwalletTransfer:
+{
+ "apiRequest": {
+ "requestObj": {
+ "customerId": "1900968940",
+ "debitAcctNo": 300010216366,
+ "debitAcctCcy": "USD",
+ "benefAcctNo": 100010216677,
+ "creditcurrency": "USD",
+ "mobileNumber":"923483249",//GetBakongIDDetails.phone
+ "transactionAmount": 10,
+ "transactionCcy": "USD",
+ "customerType": "ALL",
+ "transactionType": "BKGW",
+ "transferType": "BKGW",
+ "transRemarks": "Fund Transfer Remarks" ,
+ "receiverBankCode": "VBLCKHPPXXX",
+ "senderName": "pomchanveasna",
+ "receiverName": "Beneficiary Name",//GetBakongIDDetails.name
+ "walletNumber":"veasna_han_1990@ftcc"
+ },
+ "workflow":"ValidateTPINAndBKGWalletFundTransfer",
+ "interfaceName": "BakongWalletTransfer",
+ "appId": "FTBRMB",
+ "userId": "000000000002"
+ }
+}
+apz.app.TransactionApp.selectedAccount = function(ev) { //Get details of the selected account
+    if (!isMBSingleFlow) {
+        $('#' + screenId + 'transferNextBtn').attr('disabled', true);
+    }
+    var rowNo = parseInt(ev.id.match(/\d+/));
+    var launchType = FtbRMB.ScreenLaunchType(apz.currAppId);
+    $('#' + screenId + 'TSBeneficiarySection').removeClass('sno');
+window.SingleFromAccRow = apz.data.scrdata[accountsResNode][rowNo];
+        if (apz.deviceType !== "WEB" && launchType === 'SINGLE') 
+            /*for new single flow changes*/
+            $('#' + screenId + 'TSBeneficiarySection').addClass('sno');
+            $('#' + screenId + 'fromAccountno').val(apz.data.scrdata[accountsResNode][rowNo].accountType + '-' + apz.data.scrdata[accountsResNode][
+                rowNo
+            ].accountNo);
+            $('#' + screenId + 'fromAccCurr').val(apz.data.scrdata[accountsResNode][rowNo].currency);
+            //window.SingleFromAccRow = apz.data.scrdata[accountsResNode][rowNo];
+            //$('#' + screenId + 'fromAccountno').val(SingleFromAccRow.accountNo + ' | ' + SingleFromAccRow.currency+' '+SingleFromAccRow.availBalance);
+            window.SingleFromAcc = apz.data.scrdata[accountsResNode][rowNo].accountNo;
+            ApzRMB.accountSelectionForSingleFlow();
+            window.senderName = SingleFromAccRow.customerName;
+            availbleBalance = FtbRMB.fn_unFormatAmount(window.SingleFromAccRow.availBalance);
+            // apz.app.TransactionApp.togglefromAccountModal();
+            /*$('#' + screenId + 'accountList input[type="checkbox"]').each(function(index) {
+                if (screenId + 'singleAccountCheckbox_' + rowNo !== screenId + 'singleAccountCheckbox_' + index) {
+                    this.checked = false;
+                } else {
+                    this.checked = true;
+                }
+            });*/
+        }
+    }
+    // }
+    if (apz.deviceType !== "WEB" && launchType !== 'SINGLE') {
+        FtbRMB.showSubHeader('LIT_CHOOSE_PAYEE');
+        document.getElementById(FTBRMB + "__PostLogin_BaseScreen__plusIcon").setAttribute('onclick', 'apz.app.TransactionApp.addBeneficiary();');
+        FtbRMB.attachOnclickEvent([].concat($('#' + searchIcon3Html)), '');
+        FtbRMB.attachOnclickEvent([].concat($('#' + searchIcon3Html)), mbSearch);
+        FtbRMB.showPostLoginFooterIcons(["footerCol1", "footerCol2", "footerCol3", "backicon", "plusIcon", "searchIcon3"]);
+        /*if (FtbRMB.ScreenLaunchType(apz.currAppId) === 'SINGLE' && apz.deviceType !== 'WEB') {
+            FtbRMB.attachOnclickEvent([].concat($('#'+searchIcon3Html)), '');
+            FtbRMB.attachOnclickEvent([].concat($('#'+searchIcon3Html)), mbSearch);
+            FtbRMB.showPostLoginFooterIcons(["footerCol1", "footerCol3", "backicon", "searchIcon3"]);
+        }*/ //for existing single flow changes
+        $('#FTBRMB__PostLogin_BaseScreen__footerCol3').addClass('rht').removeClass('cen')
+        $('#' + screenId + 'TSAccountsSection').addClass('sno');
+    } else {
+        $("#" + apz.currAppId + "__" + apz.childScr + "__addPayeeBtn1").removeClass('sno');
+    }
+    if (!ManagePayee && !window.isMBSingleFlow) {
+        $('#' + PAYEE_LIST_DIV.id + ' li').removeClass('active');
+        $('#' + PAYEE_LIST_DIV.id + ' svg').addClass('sno');
+    }
+    /*for (var icn = 0; icn < ACCOUNT_LIST_CHECK_ICON.length; icn++) {
+        $('#' + ACCOUNT_LIST_CHECK_ICON[icn].id).addClass('sno');
+    }
+    if (apz.deviceType !== "WEB") {
+        $('#' + ACCOUNT_LIST_DIV.id + ' svg').addClass('sno');
+    }
+    $('#' + ev.id + ' svg').removeClass('sno');
+    $('#' + ACCOUNT_LIST_DIV.id + ' li').removeClass('active');
+    $('#' + ev.id).addClass('active');*/
+    if (window.CURRENT_SCOPE === 'OWN') {
+        apz.app.TransactionApp.ownAccountPayee(document.getElementById(ev.id).getAttribute('rowno'));
+        //apz.app.TransactionApp.noAccountsCheck();
+        apz.app.TransactionApp.paintPayeeImageText();
+        $("#" + apz.currAppId + "__" + apz.childScr + "__addPayeeBtn1").addClass('sno');
+    } else if (window.CURRENT_SCOPE === 'DEP') {
+        if (apz.deviceType === 'WEB') {
+            apz.app.TransactionApp.DepositAccounts();
+        } else {
+            FtbRMB.showSubHeader('LIT_DEPOSITPAYMENT');
+            apz.app.TransactionApp.selectedDepositAcc()
+        }
+        $("#" + apz.currAppId + "__" + apz.childScr + "__addPayeeBtn1").addClass('sno');
+        //apz.app.TransactionApp.noAccountsCheck();
+    } else if (window.CURRENT_SCOPE === 'LNS') {
+        if (apz.deviceType === 'WEB') {
+            apz.app.TransactionApp.LoanAccounts();
+        } else {
+            FtbRMB.showSubHeader('LIT_PAYOFFLOAN');
+            apz.app.TransactionApp.selectedLoanAcc();
+        }
+        $("#" + apz.currAppId + "__" + apz.childScr + "__addPayeeBtn1").addClass('sno');
+        //apz.app.TransactionApp.noAccountsCheck();
+    }
+    apz.app.TransactionApp.noAccountsCheck();
+    if (!window.isMBSingleFlow) {
+        $('#' + screenId + 'payeeCurrencyList_row_0').trigger('click');
+    }
+    //apz.app.TransactionApp.transactionLimitFetch();
+    //rowNo = $(ev).attr('rowno');
+    var accCurrency = apz.data.scrdata[accountsResNode][rowNo].currency;
+    if ($('#' + screenId + 'enterTransferCurrency').val() !== accCurrency) {
+        apz.app.TransactionApp.FetchExchangeRates();
+    } else {
+        $('#' + screenId + "interEqlAmt").addClass("sno");
+        $('#' + screenId + 'confEql').addClass('sno');
+    }
+    // if (gFtbRMB.CCY !== accCurrency /*$('#' + screenId + 'enterTransferCurrency').val()*/ ) {
+    //     apz.app.TransactionApp.FetchExchangeRates();
+    // }
+    apz.app.TransactionApp.checkSelectedAccounts(ev, listName);
+    if (ApzRMB.ScreenLaunchType(apz.currAppId) === 'SEQUENCE' && apz.deviceType !== 'WEB' && window.fromSpltTxn) {
+        $('#' + screenId + 'TSBeneficiarySection').addClass('sno');
+        $('#' + screenId + 'TSFormSection').removeClass('sno');
+        $('#footer').addClass('sno');
+    }
+};
+
+
+apz.app.TransactionApp.selectedPayee = function(ev) { //Get details of the selected account
+    var rowNo = parseInt(ev.id.match(/\d+/));
+    $('#' + screenId + 'enterTransferCurrency').val(apz.data.scrdata[benefResNode][rowNo].currency);
+    $('#' + screenId + 'enterTransferCurrency').attr('disabled', true);
+    $('#' + screenId + 'enterTransferCurrency_button').attr('disabled', true);
+    if (apz.deviceType !== "WEB") {
+        isEdited = false;
+        /*for new single flow changes*/
+        if (FtbRMB.ScreenLaunchType(apz.currAppId) === 'SINGLE') { /*for new single flow changes*/
+            if (window.CURRENT_SCOPE === 'OWN') {
+                $('#' + screenId + 'toAccountNo').val(apz.data.scrdata[benefResNode][rowNo].beneficiaryName + " " + apz.data.scrdata[benefResNode][
+                    rowNo
+                ].beneficiaryAccountNo);
+                window.SingleToAccRow = apz.data.scrdata[benefResNode][rowNo];
+                window.SingleToAcc = apz.data.scrdata[benefResNode][rowNo].beneficiaryAccountNo;
+                apz.data.scrdata[accountsResNode] = [];
+                ACCOUNT_DETAILS.forEach(function(e, i) {
+                    if (window.SingleToAcc !== e.accountNo) {
+                        apz.data.scrdata[accountsResNode].push(e)
+                    }
+                });
+                apz.data.loadData(InterfaceAccountDetails, 'Transa');
+                FtbRMB.accountSelectionForSingleFlow();
+            } else {
+                $('#' + screenId + 'toAccountNo').val(apz.data.scrdata[benefResNode][rowNo].beneficiaryAccountNo);
+                $('#' + screenId + 'enterTransferCurrency').val(apz.data.scrdata[benefResNode][rowNo].currency);
+                $('#' + screenId + 'enterTransferCurrency').attr('disabled', true);
+                $('#' + screenId + 'enterTransferCurrency_button').attr('disabled', true);
+            }
+            apz.app.TransactionApp.onAmountBlur()
+            /*var nodes = document.getElementById(screenId + 'TSFormSection').getElementsByTagName('*');
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].disabled = false;
+            }*/
+            // $('#' + screenId + 'transferNextBtn').attr('disabled', true);//commented by praisy
+            $('#' + screenId + 'payeeList input[type="checkbox"]').each(function(index) {
+                if (screenId + 'singlePayeeCheckbox_' + rowNo !== screenId + 'singlePayeeCheckbox_' + index) {
+                    this.checked = false;
+                } else {
+                    this.checked = true;
+                }
+            });
+            // apz.app.TransactionApp.toggletoAccountModal();
+        }
+        // $('#' + screenId + 'enterTransferCurrency').val(SUGGESTED_CURRENCY[0].desc);
+        if (!window.isMBSingleFlow) {
+            apz.app.TransactionApp.resetForm();
+        }
+        if ($('#' + screenId + 'RepetitiveMB_11').prop('checked')) {
+            $('#' + screenId + 'RepetitiveMB_11').prop('checked', false);
+            $('#' + screenId + 'RepetitiveMB_11').trigger('change');
+        }
+        $('#' + screenId + 'transferNowBtn').trigger('click');
+        if (window.CURRENT_SCOPE === 'OWN') {
+            FtbRMB.showSubHeader('LIT_TRANS_OWN_ACC');
+        } else if (window.CURRENT_SCOPE === 'WIT') {
+            FtbRMB.showSubHeader('LIT_TRANS_WITH_BANK');
+        } else if (window.CURRENT_SCOPE === 'WALLETWING') {
+            FtbRMB.showSubHeader('LIT_WING_TRANSFER');
+        } else if (window.CURRENT_SCOPE === 'OTIB') {
+            FtbRMB.showSubHeader('LIT_INTERNATIONALTRANSFER');
+        } else if (window.CURRENT_SCOPE === 'CAD') {
+            FtbRMB.showSubHeader('LIT_TRANS_TO_CARD');
+        } else if (window.CURRENT_SCOPE === 'BKGW') {
+            FtbRMB.showSubHeader('LIT_BAKONG_WAL_TRANSFER');
+        } else if (window.CURRENT_SCOPE === 'BKGCASA') {
+            FtbRMB.showSubHeader('LIT_BAKONG_CASA');
+        } else if (window.CURRENT_SCOPE === 'RFTCASA') {
+            FtbRMB.showSubHeader('LIT_RFT_CASA');
+        } else if (window.CURRENT_SCOPE === 'RFTPHNO') {
+            FtbRMB.showSubHeader('LIT_RFT_PHN_NUM');
+        } else if (window.CURRENT_SCOPE === 'LHPPWALLET') {
+            FtbRMB.showSubHeader('LIT_LAYHOUR_PAY');
+        } else if (window.CURRENT_SCOPE === 'NCS') {
+            FtbRMB.showSubHeader('LIT_NCS_TRANSER');
+        }
+        $('#footer').addClass('sno');
+        $('#' + screenId + 'TSBeneficiarySection').addClass('sno');
+        $('#' + screenId + 'TSFormSection').removeClass('sno');
+        /*$('#' + screenId + 'to_nav').addClass('rotate');
+        $('#' + screenId + 'details_nav').removeClass('rotate');*/ //for existing single flow changes
+    } else {
+        $('#' + screenId + 'TSFormSection').removeClass('sno');
+    }
+    for (var icn = 0; icn < PAYEE_LIST_CHECK_ICON.length; icn++) {
+        $('#' + PAYEE_LIST_CHECK_ICON[icn].id).addClass('sno');
+    }
+    $('#' + ev.id + ' svg').removeClass('sno');
+    $('#' + PAYEE_LIST_DIV.id + ' li').removeClass('active');
+    $('#' + ev.id).addClass('active');
+    if (apz.deviceType !== "WEB") {
+        window.ELEMENT_ARRAY = document.getElementById(screenId + 'DetailLocalBackBtn');
+        ELEMENT_ARRAY.setAttribute('onclick', FUNCTION_NAME);
+        // ELEMENT_ARRAY.setAttribute('onclick',
+        //     "FtbRMB.fnDisplayMsg(FtbRMB.getDescfromLitCode('LIT_CANCELTRANSACTIONCONFIRMATIONMESSAGE'), 'C', apz.app.TransactionApp.transferBackCallBack);"
+        // );
+        $("#footer").addClass("sno");
+        $('#' + screenId + 'TSFormSection').removeClass('sno');
+        if (FtbRMB.ScreenLaunchType(apz.currAppId) === 'SINGLE' && apz.deviceType !== 'WEB') {
+            $('#' + screenId + 'TSFormSection').removeClass('sno');
+        }
+    } else if (apz.deviceType === "WEB" && !ManagePayee) {
+        $('#' + screenId + 'enterTransferAmount').focus();
+    }
+    //apz.app.TransactionApp.transactionLimitFetch();
+    apz.app.TransactionApp.checkSelectedAccounts(ev, listName);
+    //apz.app.TransactionApp.getSuggestedAmount(ev);
+};
+
+apz.app.TransactionApp.ownAccountPayee = function(rowno) { //Display details of own accounts
+    apz.data.scrdata[benefResNode] = []; //var deviceScope = apz.deviceType === 'WEB' ? 'Transa__IPaintBeneficiaryDetails_Res' : 'Transa__IPaintBeneficiaryDetailsOwn_Res';
+    var accountTemp = JSON.parse(JSON.stringify(apz.data.scrdata[accountsResNode]));
+    ACCOUNT_DETAILS.forEach(function(e, i) {
+        if (window.SingleFromAcc !== e.accountNo) {
+            e.beneficiaryName = e.accountType;//'Self';
+            e.beneficiaryBankName = e.bankName;
+            e.beneficiaryAccountNo = e.accountNo;
+            e.beneficiaryAccountType = e.accountType;
+            apz.data.scrdata[benefResNode].push(e)
+        }
+    });  
+    apz.data.loadData('IPaintBeneficiaryDetails', 'Transa');
+    apz.data.scrdata[benefResNode].forEach(function(e, i) {
+            if (!apz.isNull(window.SingleToAcc) && window.SingleToAcc === e.beneficiaryAccountNo) {
+                $('#' + screenId + checkboxSinglePayee).each(function(index) {
+                    if (screenId + 'singlePayeeCheckbox_' + i !== screenId + 'singlePayeeCheckbox_' + index) {
+                        this.checked = false;
+                    } else {
+                        this.checked = true;
+                    }
+                });
+            }
+        });
+};
+
+apz.app.TransactionApp.activeCurrency = function(ev) { //Get details of the active currency
+    var arrayToSearch, interfacePaint, clearCheck, payeeLi = 'payeeCurrencyList li';
+    if (ev.id.indexOf('accountCurrencyList') !== -1) {
+        $('#' + screenId + 'accountCurrencyList li').removeClass('active');
+        arrayToSearch = $('#' + screenId + 'toAccountNo').val() === "" ? ACCOUNT_DETAILS : FRM_DETAILS; //ACCOUNT_DETAILS;
+        clearCheck = ACCOUNT_LIST_DIV;
+        interfacePaint = 'Transa__IPaintAccountDetails_Res';
+        FtbRMB.sortOnCurrency($('#' + ev.id).text(), arrayToSearch, ['currency'], interfacePaint);
+        $('#' + clearCheck.id + ' li').removeClass('active');
+        $('#' + clearCheck.id + ' svg').addClass('sno');
+        apz.app.TransactionApp.displayPrimaryIcon(apz.data.scrdata[accountsResNode]);
+        if (window.isMBSingleFlow) {
+            /*$('#' + screenId + 'accountList input[type="checkbox"]').each(function(index) {
+                this.checked = false;
+            });
+            $('#' + screenId + 'fromAccountno').val("");
+*/
+        }
+    } else if (window.CURRENT_SCOPE === 'DEP') {
+        $('#' + screenId + payeeLi).removeClass('active');
+        arrayToSearch = window.getDepositAccounts;
+        clearCheck = DEPOSIT_LIST_DIV;
+        interfacePaint = 'Transa__GetDepositAccounts_Res';
+        $('#' + clearCheck.id + ' li').removeClass('active');
+        $('#' + clearCheck.id + ' svg').addClass('sno');
+        FtbRMB.sortOnCurrency($('#' + ev.id).text(), arrayToSearch, ['currency'], interfacePaint, "MessageBody");
+    } else if (window.CURRENT_SCOPE === 'LNS') {
+        $('#' + screenId + payeeLi).removeClass('active');
+        arrayToSearch = window.getLoanAccounts;
+        clearCheck = LOAN_LIST_DIV;
+        interfacePaint = 'Transa__GetLoanAccounts_Res';
+        $('#' + clearCheck.id + ' li').removeClass('active');
+        $('#' + clearCheck.id + ' svg').addClass('sno');
+        FtbRMB.sortOnCurrency($('#' + ev.id).text(), arrayToSearch, ['currency'], interfacePaint, "MessageBody");
+    } else {
+        if (!ManagePayee) {
+            $('#' + screenId + payeeLi).removeClass('active');
+            clearCheck = PAYEE_LIST_DIV;
+            $('#' + clearCheck.id + ' li').removeClass('active');
+            $('#' + clearCheck.id + ' svg').addClass('sno');
+        }
+        if (window.isMBSingleFlow) {
+            if ($('#' + screenId + 'fromModel').is(":visible")) {
+                $('#' + screenId + 'accountList input[type="checkbox"]').each(function(index) {
+                    this.checked = false;
+                });
+                $('#' + screenId + 'fromAccountno').val("");
+            } else if ($('#' + screenId + 'toModel').is(":visible")) {
+                $('#' + screenId + 'payeeList input[type="checkbox"]').each(function(index) {
+                    this.checked = false;
+                });
+                $('#' + screenId + 'toAccountNo').val("");
+            }
+        }
+        $('#' + screenId + payeeLi).removeClass('active');
+        arrayToSearch = PAYEE_DETAILS;
+        interfacePaint = benefResNode;
+        FtbRMB.sortOnCurrency($('#' + ev.id).text(), arrayToSearch, ['currency'], interfacePaint);
+    }
+    $('#' + ev.id).addClass('active');
+    apz.app.TransactionApp.paintPayeeImageText();
+    apz.app.TransactionApp.noAccountsCheck();
+};

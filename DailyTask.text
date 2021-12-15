@@ -1,0 +1,286 @@
+IB UAT bug
+14210,14209
+
+own Account exchange rate issue fixed 
+international transfer exchange rate issue fixed
+converted amount always showing in USD on confirm screen fixed
+exchange rate was not showing on confirm screen for IB
+currency issue fixed in IB 
+to accountNo was not showing on confirm screen for within transfer
+for same currency converted value was showing on transfer screen
+14217 -within transfer issue fixed(cross)
+14216 -within transfer (same currency)
+14212 - own account transfer (same currency)
+14214 -own account transfer (same currency)
+14223 -bakong wallet
+14222 - bakong casa
+14224 - RFT phone number
+
+14226 -RFT casa
+14231 -lhpp
+14210 - Wing download issue
+
+exchage rate issue fix for own account transfer
+within bank transfer
+added favorite button on success screen for own account transfer
+worked on view favorites -WIP
+fixed equivalent amount currency issue
+receiver name issue fixed RFT phone number 
+
+hide logout and mail icon from manage favourite screen
+wallet number and wallet name was not painting in transaction receipt for LHPP
+exchange rate confirm screen currency and length issue fixed
+worked on sidebarmenu Navigation -WIP 
+
+fixed added receiver name in rftphone number receipt
+worked on NCS transfer
+worked on within transfer 
+removed rupees icon from recent transaction  
+fixed RFTcasa Next button click issues
+
+Transfer QuickMenu issue fixed removed other transfer from quick menu
+
+13-09-21
+14582 NCS bankList issue
+equivalent amount issue Bakong wallet
+14565 add bank name and fee chare for NCS
+14591- moved choose bank name below from account
+14565
+14582
+14589
+14590
+14591
+14298
+14675
+14-09-21
+---------------
+cross check the whole functionality of NCS including Exchange rate and do the issue raised in bug
+Added placeholder on RFT phone number receiver name
+14298 Added Account name on success screen for RFTCASA
+
+15-09-21
+----------
+testing within transfer flow 
+testing NCS transfer
+14567 -ncs notes for MB and IB
+
+16-09-21
+---------
+removed static values from transfer and added Lit_codes where lit_codes was missings
+verifyin wing transfer issue
+testing notification
+
+17-09-21
+---------
+14675 -bank name on bakong to other bank
+purpose field moved down after transfer type in IB
+fixed fee charge issue in RFT to other bank and RFTPhn no fee charges was different from confirmation and success screen
+success screen fee charge is coming in unformatted but in confirm screen it is coming as formatted fixed
+Bakong wallet Failing
+bakong casa failing soap Api execution failed
+RFTphoneNo onclick of RFt phone no getting error processing request onclick of ok it 
+
+20-09-21
+---------
+Worked on schedule transferissue in IB
+Compared both MB and IB in Transfer
+Added Repeat button on sucess screen and removed retry button from failure screen
+worked on manage Beneficary in IB
+made input field same as MB
+Next button was not working
+Mobile number is not showing on confirmation screen in MB and IB
+
+He told me to worked on following items
+---------------------------------------
+getting technical difficulties while create schedule transfer from schedule transfer screen
+he told me to add repeat option on success screen and remove retry button from failure screen
+On click on Next on All transfer first we are getting technical difficulties error i have to fixed this
+Dinesh told me to worked on Manage beneficiary
+he told me remove extra field from input screen
+and after keying all field Next button is not working
+on confirmation screen of Manage beneficary mobile Number is not showing in bot MB and IB
+
+21-09-21
+-------------------------
+1. Repeat transfer mode with all transfer type 
+WIT not moving on confirmation screen
+LHPP WalletNumber validation is failing
+WING- benf name was not showing,not moving on confirmation screen,getting error processing request
+Bakong Wallet, Bakong Casa - soap API excecution failed
+RFT phone number getting - Error processing request
+RFT ot other Bank - Bank Name is not showing on input screen, on click of Next it is not moving on Confirm screen
+NCS - getting fund transfer failed
+own Account Trnsfer - not moving on confirm screen
+own account transfer - transfer currency is coming as different
+own account currency issue fixed
+
+22-09-21
+---------
+Comparing excahnge rate and fee charge in MB and IB
+Not able to test RFT phone number, RFTCASA and bakong casa  bcz of bank code API
+LHPP- search Wallet No APi is failing 
+Working on Wing Transfer issue in IB
+Testing face id authentication 
+verified cross currency in all transfer in IB
+Working on WING transfer cross currency in progress
+Tested Repeat Transfer in IB
+Tested cross currency in IB
+
+23-09-21
+------------
+Woked on Manage Beneficary WIP 
+
+24-09-21
+-----------------
+Worked on Manage Beneficary 
+UAT IB issue 
+14209	         OPEN   First Click on Transfer to Local Banks and Wallets got error messages -Working
+14210	         OPEN	Error when download txn completed   -Working
+14212	         OPEN	Transfer Own account-(the same currency)- 
+14214	         OPEN	Transfer to Own Account (Cross Currency)
+14216	         OPEN	Transfer to Within Bank-(the same currency)
+14217	         OPEN	Transfer to Within Bank - (Cross-currency)	
+14226		 OPEN	Transfer to RFT CASA	
+14222	         OPEN	Transfer to Bakong CASA	
+14223	         OPEN	Transfer to Bakong Wallet
+14224	         OPEN	Transfer to RFT Phone number
+14231	         OPEN	Cannot do Fund Transfer to Lyhour via i-Banking
+
+27-09-21
+--------------------
+get KT from rohan kularni
+get required file
+done local setup for Admin
+14792 Fixed
+14787 - fixed
+14788 -fixed
+14643 become FTB client needs to work,clarification
+Worked on Admin issue
+
+28-09-21
+==============
+Report Download Issue
+limit maintenance
+14643 - WIP
+14711 -limit maintenance WIP
+14643 -WIP status and requested date need to added in screen
+
+29-09-21
+============
+14643 added requested date and status field Fixed
+14614 -add profile image, product issue is there i have raised with product team
+image is not showing in browser, image is present in theme and mapped from screen  level on click on image url getting 404 found errors
+I need calrification on following Admin bug
+14781 - Not able to reproduce issue
+
+14786
+1. User login App everyday, why last date is 19/09/2021.
+2. Why number login is zero?
+3. What is Number of Distinct Logins mean?
+4. How Total Transactions is count? it is total of financial transaction success and failed, login, request function. pls details.
+5. Should be have function to download this report.
+
+14784,
+Customer: on 22-09-2021 this user perform 3 transactions
+1. Why in admin report showing many Total Transaction?
+2. What is Distinct Transaction mean? 
+3. Location file no data
+4. It should be function to download this report.
+
+14790,
+not able to reproduce,may be no issue
+
+14711 -I have to work on this issue or not
+
+user image is not showing in browser image is present in theme and mapped from screen  level on click on image url getting 404 found errors.
+when i preview from Appzillon user image is showing but when i depolyed in SIT that time user is not showing in browser. onclick of image url from element it is showing 404 found error.
+
+
+30-09-21
+=========
+LIT_CODES update
+mark with red colour and yellow color means no khmer translation available
+
+01-10-21
+=============
+MB IB LIT verification
+bug no-14917 fixed
+bug no 14886 fixed
+bug no 14884 fixed
+bug no 14916 not a issue request date is coming properly 
+change lanugage  issue fixed in MB and IB
+
+04-10-21
+=============
+bug no 14918 fixed
+
+14711  need to work limit maintenances
+bug no 14614 FTB client image issue need to work
+
+total fixed bug
+-----------------
+14917,14643,14886,14884,14918,14788,14787,14711
+14916 - not a issue
+14790 -not a issue
+
+pending bug
+-------------
+14925,14786,1
+
+05-10-21
+-----------
+Worked on complaint redressal in Admin
+Worked on Report download issue fixed for usage
+14711 -Fixed
+14501 - Not a issue I verified in SIT
+Tested Account Authentication, Transfer
+14925 - limit issue Pending with Akshay
+14781 - limit maintenance update issue
+14880 - Admin user cannot able to Login
+14784 ,14786 _ no of login issue
+
+https://mobilesit.ftbbank.com
+
+06-10-21
+---------
+Worked on local transfer navigation issue
+bug no 14614 Become FTB client issue
+Fixed Loader issue in FTB client
+Worked on complaints redressal
+
+Insert into TB_ABMI_FEATURES_MASTER (APP_ID,FEATURE_ID,SCREENS_ID,INTERFACE_ID,FEATURE_NAME,SCREEN_NAME,AVAILABLE,MICROAPP_ID) values ('Admin','APZRCMNT','APZRCMNT','["IpaintRaiseComplaints","RaiseComplaints","IpaintToggleDetails"]','Complaints redressal','APZRCMNT','Y','RaiseC');
+
+07-10-21
+---------
+Worked on complaints redressal -Completed
+verified LIT_codes
+
+08-10-21
+----------
+gone through Service Request Document
+Approved All request
+Fixed calender issue in service request
+verifying remaining Lit_codes
+14643 - not issue
+14884 -fixed
+15020 -needs to work
+Become FTB client: The photo displayed too small to verify. Please make the option on click to make these photos showing bigger in screen.
+15019 - needs to work
+Become FTB client: 
+Please add "All" in Status drop list filed for searching option. 
+
+
+11-10-21
+---------
+Worked on list issue with 10 items a page. for service Request, complaint Redressal
+Worked on Admin changes which is shared by Akshay
+Updated LIT_codes on Mangage payee,paybills and Prelogin MicroApp
+
+12-10-21
+-----------
+feedback,Authentication and Login,cards,Dashboard,Mailbox,SecureRegistration
+
+13-10-21
+------------
+Do for RaiseComplaints, ServiceRequest, ApplyCreditCard, Success, ViewComplaints, DebitCard, Confirmation - 7 screesn as of now
+
