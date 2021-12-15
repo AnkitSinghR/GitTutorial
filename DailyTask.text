@@ -8,7 +8,7 @@ exchange rate was not showing on confirm screen for IB
 currency issue fixed in IB 
 to accountNo was not showing on confirm screen for within transfer
 for same currency converted value was showing on transfer screen
-14217 -within transfer issue fixed(cross)
+14217 -within transfer issue fixed(cross)1
 14216 -within transfer (same currency)
 14212 - own account transfer (same currency)
 14214 -own account transfer (same currency)
