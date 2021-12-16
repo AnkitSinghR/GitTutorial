@@ -1,0 +1,206 @@
+LIT_CODE is not present in screen for below Label 
+
+Dashboard
+===========
+View Balance
+Transfer button 
+Pay bills button
+
+Dashboard QuickLinks 
+
+Account
+QR Pay
+Phone Top up
+Manage Beneficiary
+
+
+QR pay
+===========
+QR Pay header Text - Scan and Pay 
+
+Account
+==========
+"Account" submenu Heading showing in english
+
+open saving Account option/Open Deposits Account
+-------------------------------------------------
+Choose Your Savings Plan
+
+FTB.SAVING.ACCTS
+-----------------
+FTB.SAVING.ACCTS input
+---------------------
+Debit Account
+Fee charge
+select Debit Account
+select Currency
+Equivalent Amount In
+Tenure In Months
+Maturity Instruction
+Payout Account
+
+FTB.SAVING.ACCTS confirm
+------------------------
+Savings Plan
+Debit Account
+Fee charge
+Currency
+FTB.SAVING.ACCTS success
+----------------------------
+Transaction Id
+New Account
+Fee Charge
+Debit Account
+Amount
+Tenure In Months
+Maturity Instruction
+Payout Account
+
+Manage Payee
+==============
+Transalation not available
+LIT_BENF_ADDR1- Benificiary Address 1
+LIT_BENF_ADDR2- Benificiary Address 2
+LIT_BENF_ADDR3- Benificiary Address 3
+LIT_BENFBANK_ADDR1 -Beneficiary Bank Address 1
+LIT_BENFBANK_ADDR2 -Beneficiary Bank Address 2
+LIT_BENBANKNAME- Beneficiary Bank Name
+LIT_INT_BANK -Intermediary Bank SWIFT Code
+
+
+Pay Bills
+===========
+"Pay Bills" Heading is not changing in Paybills submenu
+biller input screen
+---------------------
+From
+Choose Biller
+
+Biller confirm screen
+--------------------
+Fee Charge
+From
+Biller success screen
+---------------------
+From
+Fee Charge
+Expired Date
+Saving/Current Accounts
+Repetative payment
+Please choose the period
+
+
+FTB MENU
+=========
+All menu option are showing in english only
+
+Transfer
+==========
+local bank wallet Transfer not loading submenu
+Input screen
+------------
+Select From Account
+Select To Account
+Please enter Card No
+Select Bank
+Please enter Phone No.
+Please enter Wallet No.
+Please select From Account No
+Please select Bank Name
+Please enter Account No
+Please enter Card No
+Please select To Account No
+Please enter Beneficary Name
+Please enter receiver Name
+Enter Beneficiary Name
+Please choose the period
+
+Transfer Success screen
+------------------------
+From
+LIT_BENF_ADDR3
+
+Personalize Your Dashboard
+============================
+All submenu are showing in english language
+
+Locate us
+================
+header is showing in english only
+ALL
+ATM
+BRANCH
+VIP BANKING
+BAKONG
+
+Cards
+=========
+Cards submenu heade is showing in english
+DEBIT card
+-----------
+FTB VISA DEBIT CARD
+FTB VISA CASHCARD BLUE
+FTB VISA CASHCARD GOLD
+FTB VISA CASHCARD SILVER
+FTB VISA DEBIT CLASSIC
+FTB VISA DEBIT GOLD
+FTB ATM DEBIT GOLD
+FTB ATM DEBIT BLUE
+FTB CO-BRANDED CASHCARD
+CARD FEATURES
+No Cash Collateral
+No interest Charge
+Secure Payment with 3DS
+Recognised and acceptable worldwide
+I have read and agree to the terms and conditions
+Please accept terms and conditions
+Bank Representative will get in touch with you once your application is reviewed
+
+Prepaid Card
+------------
+Card QR  - heading
+Prepaid Card
+View Transaction
+Block Card
+
+
+Loan
+=============
+Loans - header
+open Loan Account
+------------
+Plan Type
+Apply -Button
+Existing EMI
+
+Deposit
+============
+Deposits - Header
+
+Settings
+==========
+Settings -Header
+View Complaints
+
+Profile
+========
+profile -header
+Customer ID
+Choose Option
+Take Photo
+
+
+Manage limits
+==============
+Transaction Limit
+
+Change Secret Question
+=======================
+popup error message is showing in english on click on confirm
+
+Incorrect Answer. Please enter the correct answer
+
+personalized dashboard
+========================
+All option are showing in english
+
